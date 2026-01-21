@@ -1,12 +1,14 @@
 import './App.css';
+import { VideoPlayer } from 'components/VideoPlayer';
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
+      
         <h1>🎬 Video Player with XState</h1>
         <p>State Machine Implementation - Test Assignment</p>
-      </header>
+        <VideoPlayer />
+      
     </div>
   );
 };
