@@ -11,7 +11,6 @@ A modern video player implementation using Finite State Machines pattern with XS
 - React hooks for state management integration
 - Ant Design Modal for fullscreen player interface
 - React Player for video playback
-- Properly styled UI with custom controls and responsive design
 
 ### 🛠 Technology Stack
 - **React** - Frontend framework (v18.2.0)
