@@ -70,12 +70,12 @@ export const VideoPlayer: React.FC = () => {
   return (
     <Modal
       open={true}
-      width={isFullSize ? '90vw' : '40vw'}
+      width={isFullSize ? '85vw' : '35vw'}
       footer={null}
       closable={false}
       styles={{ body: { padding: 0 } }}
     >
-      <Flex vertical>
+      <Flex vertical gap="middle">
         <Flex gap="small" justify="space-between" wrap>
           <Title level={3} style={{ textTransform: 'uppercase' }}>
             PLAYER
@@ -92,7 +92,7 @@ export const VideoPlayer: React.FC = () => {
         <ReactPlayer
           src={state.context.url}
           playing={isPlaying}
-          width="90%"
+          width="100%"
           height={isFullSize ? '70vh' : '40vh'}
           muted={true}
           controls={false}
