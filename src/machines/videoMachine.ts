@@ -13,7 +13,7 @@ export const videoMachine = createMachine<VideoContext, VideoEvent>({
     states: {
         closed: {
             on: {
-                OPEN: 'playing'
+                OPEN: 'paused'
             }
         },
         playing: {
