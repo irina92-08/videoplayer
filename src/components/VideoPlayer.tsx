@@ -3,12 +3,19 @@ import ReactPlayer from 'react-player'
 import { useMachine } from "@xstate/react";
 import { Modal, Button, Flex, Typography} from "antd";
 import { videoMachine } from "machines/videoMachine";
-import {PlayCircleOutlined, ShrinkOutlined, PauseCircleOutlined, CloseOutlined} from '@ant-design/icons'
+import {PlayCircleOutlined, CloseOutlined} from '@ant-design/icons'
+import { Controls } from "./Controls";
 
 export const VideoPlayer: React.FC = () => {
     const [state, send] = useMachine(videoMachine)
     const { Title } = Typography;
     console.log(state)
+
+    const handlePlay = () => send({ type: 'PLAY' });
+    const handlePause = () => send({ type: 'PAUSE' });
+    const handleMini = () => send({ type: 'MINI' });
+    const handleMaxi = () => send({ type: 'MAXI' });
+    const handleClose = () => send({ type: 'CLOSE' });
 
     if(state.value === 'closed')
     {return (
@@ -39,7 +46,7 @@ export const VideoPlayer: React.FC = () => {
                     PLAYER
                 </Title>
             
-                <Button variant="link" color='default' onClick={() => {send('CLOSE')}} icon={<CloseOutlined />} size='large'/>
+                <Button variant="link" color='default' onClick={handleClose} icon={<CloseOutlined />} size='large'/>
             </Flex>
             <ReactPlayer
                 src={state.context.url}
@@ -49,10 +56,14 @@ export const VideoPlayer: React.FC = () => {
                 muted={true}
                 controls={false}
             />
-            <Flex gap="small" justify='flex-end' wrap>
-            <Button variant="outlined" shape="circle" color='default' onClick={() => {send('MINI')}} icon={<ShrinkOutlined />} size='large' />
-            <Button variant="outlined" shape="circle" color='default' onClick={() => {send('PAUSE')}} icon={<PauseCircleOutlined />} size='large'/>
-            </Flex>
+            <Controls
+                isPlaying={state.value === 'playing'}
+                isMini={false}
+                onPlay={handlePlay}
+                onPause={handlePause}
+                onMini={handleMini}
+                onMaxi={handleMaxi}
+            />
         </Flex>
         
       </Modal>
