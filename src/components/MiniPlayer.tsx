@@ -1,9 +1,7 @@
 import React from "react";
 import ReactPlayer from 'react-player'
-import { useMachine } from "@xstate/react";
-import { Modal, Button, Flex, Typography} from "antd";
-import { videoMachine } from "machines/videoMachine";
-import {PlayCircleOutlined, CloseOutlined} from '@ant-design/icons'
+import { Modal, Button, Flex, Typography } from "antd";
+import { CloseOutlined } from '@ant-design/icons'
 import { Controls } from "./Controls";
 
 interface MiniPlayerProps {
