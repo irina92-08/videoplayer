@@ -1,12 +1,13 @@
 import React from "react";
 import ReactPlayer from 'react-player'
 import { useMachine } from "@xstate/react";
-import { Modal, Button } from "antd";
+import { Modal, Button, Flex, Typography} from "antd";
 import { videoMachine } from "machines/videoMachine";
-import {PlayCircleOutlined} from '@ant-design/icons'
+import {PlayCircleOutlined, ShrinkOutlined, PauseCircleOutlined, CloseOutlined} from '@ant-design/icons'
 
 export const VideoPlayer: React.FC = () => {
     const [state, send] = useMachine(videoMachine)
+    const { Title } = Typography;
     console.log(state)
 
     if(state.value === 'closed')
@@ -28,21 +29,32 @@ export const VideoPlayer: React.FC = () => {
         <Modal
         open={true}
         width="90vw"
-        //footer={null}
+        footer={null}
         closable={false}
         styles={{ body: { padding: 0 } }}
       >
-        <div>
-          <ReactPlayer
-            src={state.context.url}
-            playing={state.value === 'playing'}
-            width="100%"
-            height="70vh"
-            muted={true}
-            controls={false}
-          />
-
-        </div>
+        <Flex vertical>
+            <Flex gap="small" justify='space-between' wrap>
+                <Title level={3} style={{ textTransform: 'uppercase' }}>
+                    PLAYER
+                </Title>
+            
+                <Button variant="link" color='default' onClick={() => {send('CLOSE')}} icon={<CloseOutlined />} size='large'/>
+            </Flex>
+            <ReactPlayer
+                src={state.context.url}
+                playing={state.value === 'playing'}
+                width="100%"
+                height="70vh"
+                muted={true}
+                controls={false}
+            />
+            <Flex gap="small" justify='flex-end' wrap>
+            <Button variant="outlined" shape="circle" color='default' onClick={() => {send('MINI')}} icon={<ShrinkOutlined />} size='large' />
+            <Button variant="outlined" shape="circle" color='default' onClick={() => {send('PAUSE')}} icon={<PauseCircleOutlined />} size='large'/>
+            </Flex>
+        </Flex>
+        
       </Modal>
     )}
     return null
