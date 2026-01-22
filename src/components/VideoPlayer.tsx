@@ -17,6 +17,35 @@ export const VideoPlayer: React.FC = () => {
     const handleMaxi = () => send({ type: 'MAXI' });
     const handleClose = () => send({ type: 'CLOSE' });
 
+    const renderPlayer = () => {
+    switch (state.value) {
+      case 'playing':
+      case 'paused':
+        return (
+          <Controls
+            isPlaying={state.value === 'playing'}
+            isMini={false}
+            onPlay={handlePlay}
+            onPause={handlePause}
+            onMini={handleMini}
+          />
+        );
+      case 'miniPlaying':
+      case 'miniPaused':
+        return (
+          <Controls
+            isPlaying={state.value === 'miniPlaying'}
+            isMini={true}
+            onPlay={handlePlay}
+            onPause={handlePause}
+            onMini={handleMaxi}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
     if(state.value === 'closed')
     {return (
        <Button 
@@ -31,11 +60,11 @@ export const VideoPlayer: React.FC = () => {
             onClick={() => {send('OPEN')}}
         />
     )}
-    if(state.value === 'playing' || state.value === 'paused'){
+    
     return(
         <Modal
         open={true}
-        width="90vw"
+        width={state.value === 'playing' || state.value === 'paused'? "90vw": "40vw"}
         footer={null}
         closable={false}
         styles={{ body: { padding: 0 } }}
@@ -52,20 +81,15 @@ export const VideoPlayer: React.FC = () => {
                 src={state.context.url}
                 playing={state.value === 'playing'}
                 width="100%"
-                height="70vh"
+                height={state.value === 'playing' || state.value === 'paused'? "70vh": "40vh"}
                 muted={true}
                 controls={false}
             />
-            <Controls
-                isPlaying={state.value === 'playing'}
-                isMini={false}
-                onPlay={handlePlay}
-                onPause={handlePause}
-                onMini={handleMini}
-            />
+            {renderPlayer()}
         </Flex>
         
       </Modal>
-    )}
-    return null
+    )
 }
+
+export default VideoPlayer;
