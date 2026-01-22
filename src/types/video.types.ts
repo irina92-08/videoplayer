@@ -10,11 +10,11 @@ export type VideoEvent =
   | { type: 'PAUSE' }
   | { type: 'MINI' }
   | { type: 'MAXI' }
-  | { type: 'CLOSE' }
+  | { type: 'CLOSE' };
 
 export type VideoState =
   | { value: 'closed'; context: VideoContext }
   | { value: 'playing'; context: VideoContext }
   | { value: 'paused'; context: VideoContext }
   | { value: 'miniPlaying'; context: VideoContext }
-  | { value: 'miniPaused'; context: VideoContext }
+  | { value: 'miniPaused'; context: VideoContext };

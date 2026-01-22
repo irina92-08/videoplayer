@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  PlayCircleOutlined, 
+import {
+  PlayCircleOutlined,
   PauseCircleOutlined,
   ShrinkOutlined,
-  ArrowsAltOutlined
+  ArrowsAltOutlined,
 } from '@ant-design/icons';
-import {Button, Flex} from "antd";
+import { Button, Flex } from 'antd';
 
 interface ControlsProps {
   isPlaying: boolean;
@@ -23,14 +23,14 @@ export const Controls: React.FC<ControlsProps> = ({
   onMini,
 }) => {
   return (
-    <Flex gap="small" justify='flex-end' wrap>
+    <Flex gap="small" justify="flex-end" wrap>
       {isMini ? (
-        <Button 
-          variant="outlined" 
+        <Button
+          variant="outlined"
           onClick={onMini}
           shape="circle"
-          color='default'
-          size='large'
+          color="default"
+          size="large"
           icon={<ArrowsAltOutlined />}
           title="Развернуть"
         />
@@ -39,8 +39,8 @@ export const Controls: React.FC<ControlsProps> = ({
           variant="outlined"
           onClick={onMini}
           shape="circle"
-          color='default'
-          size='large'
+          color="default"
+          size="large"
           icon={<ShrinkOutlined />}
           title="Свернуть"
         />
@@ -50,8 +50,8 @@ export const Controls: React.FC<ControlsProps> = ({
           variant="outlined"
           onClick={onPause}
           shape="circle"
-          color='default'
-          size='large'
+          color="default"
+          size="large"
           icon={<PauseCircleOutlined />}
           title="Пауза"
         />
@@ -60,8 +60,8 @@ export const Controls: React.FC<ControlsProps> = ({
           variant="outlined"
           onClick={onPlay}
           shape="circle"
-          color='default'
-          size='large'
+          color="default"
+          size="large"
           icon={<PlayCircleOutlined />}
           title="Воспроизвести"
         />
