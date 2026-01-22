@@ -2,8 +2,7 @@ import React from 'react';
 import { 
   PlayCircleOutlined, 
   PauseCircleOutlined,
-  ShrinkOutlined, 
-  VerticalAlignTopOutlined, 
+  ShrinkOutlined,
   ArrowsAltOutlined
 } from '@ant-design/icons';
 import {Button, Flex} from "antd";
@@ -14,7 +13,6 @@ interface ControlsProps {
   onPlay: () => void;
   onPause: () => void;
   onMini: () => void;
-  onMaxi: () => void;
 }
 
 export const Controls: React.FC<ControlsProps> = ({
@@ -23,7 +21,6 @@ export const Controls: React.FC<ControlsProps> = ({
   onPlay,
   onPause,
   onMini,
-  onMaxi,
 }) => {
   return (
     <Flex gap="small" justify='flex-end' wrap>
@@ -40,7 +37,7 @@ export const Controls: React.FC<ControlsProps> = ({
       ) : (
         <Button
           variant="outlined"
-          onClick={onMaxi}
+          onClick={onMini}
           shape="circle"
           color='default'
           size='large'

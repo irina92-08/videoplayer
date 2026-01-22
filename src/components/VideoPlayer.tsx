@@ -62,7 +62,6 @@ export const VideoPlayer: React.FC = () => {
                 onPlay={handlePlay}
                 onPause={handlePause}
                 onMini={handleMini}
-                onMaxi={handleMaxi}
             />
         </Flex>
         
